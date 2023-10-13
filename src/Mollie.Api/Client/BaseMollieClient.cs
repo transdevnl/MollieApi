@@ -85,14 +85,20 @@ namespace Mollie.Api.Client {
 
             switch (response.StatusCode) {
                 case HttpStatusCode.BadRequest:
+                    throw new MollieApiException((int)HttpStatusCode.BadRequest, resultContent);
                 case HttpStatusCode.Unauthorized:
+                    throw new MollieApiException((int)HttpStatusCode.Unauthorized, resultContent);
                 case HttpStatusCode.Forbidden:
+                    throw new MollieApiException((int)HttpStatusCode.Forbidden,resultContent);
                 case HttpStatusCode.NotFound:
+                    throw new MollieApiException((int)HttpStatusCode.Forbidden, resultContent);
                 case HttpStatusCode.MethodNotAllowed:
+                    throw new MollieApiException((int)HttpStatusCode.MethodNotAllowed, resultContent);
                 case HttpStatusCode.UnsupportedMediaType:
+                    throw new MollieApiException((int)HttpStatusCode.UnsupportedMediaType, resultContent);
                 case HttpStatusCode.Gone:
                 case (HttpStatusCode) 422: // Unprocessable entity
-                    throw new MollieApiException(resultContent);
+                    throw new MollieApiException(422,resultContent);
                 default:
                     throw new HttpRequestException(
                         $"Unknown http exception occured with status code: {(int) response.StatusCode}.");

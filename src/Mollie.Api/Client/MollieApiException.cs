@@ -4,9 +4,11 @@ using Newtonsoft.Json;
 
 namespace Mollie.Api.Client {
     public class MollieApiException : Exception {
+        public int StatusCode { get; set; }
         public MollieErrorMessage Details { get; set; }
 
-        public MollieApiException(string json) : base(ParseErrorMessage(json).ToString()){
+        public MollieApiException(int statusCode, string json) : base(ParseErrorMessage(json).ToString()){
+            StatusCode = statusCode;
             this.Details = ParseErrorMessage(json);
         }
 
