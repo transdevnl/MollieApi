@@ -99,6 +99,8 @@ namespace Mollie.Api.Client {
                 case HttpStatusCode.Gone:
                 case (HttpStatusCode) 422: // Unprocessable entity
                     throw new MollieApiException(422,resultContent);
+                case HttpStatusCode.Conflict: // Unprocessable entity
+                    throw new MollieApiException((int)HttpStatusCode.Conflict, resultContent);
                 default:
                     throw new HttpRequestException(
                         $"Unknown http exception occured with status code: {(int) response.StatusCode}.");
