@@ -74,6 +74,9 @@ namespace Mollie.Api.Models.Payment.Request {
             }
         }
 
+
+        public string Issuer { get; set; }
+
         /// <summary>
         /// Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method
         /// and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter 
@@ -170,5 +173,6 @@ namespace Mollie.Api.Models.Payment.Request {
         public override string ToString() {
             return $"Method: {this.Method} - Amount: {this.Amount}";
         }
+
     }
 }
